@@ -3,10 +3,14 @@ const app = express(); /* Spins up express to utilize different functionality */
 const morgan = require('morgan') /* Used for the logging */
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+const dotenv = require('dotenv')
+
+/* Configure dotnev to read the env file */
+dotenv.config()
 
 /* connect to mongoose */
 mongoose.connect(
-    'mongodb+srv://'+ process.env.MONGMONGO_USER_NAME + ':' + process.env.MONGO_PASSWORD +'@cluster1-8lfza.mongodb.net/'+process.env.MONGO_DB+'?retryWrites=true&w=majority', {
+    'mongodb+srv://'+ process.env.MONGO_USER_NAME +':'+ process.env.MONGO_PASSWORD +'@cluster1-8lfza.mongodb.net/'+process.env.MONGO_DB+'?retryWrites=true&w=majority', {
         useNewUrlParser: true,
         useUnifiedTopology: true
     });
