@@ -1,9 +1,9 @@
 const express = require('express');
 const app = express(); /* Spins up express to utilize different functionality */
 const morgan = require('morgan') /* Used for the logging */
-const bodyParser = require('body-parser')
-const mongoose = require('mongoose')
-const dotenv = require('dotenv')
+const bodyParser = require('body-parser')  //handling response
+const mongoose = require('mongoose') // connect to db
+const dotenv = require('dotenv') // Fixing env issue
 
 /* Configure dotnev to read the env file */
 dotenv.config()
@@ -15,6 +15,7 @@ mongoose.connect(
         useUnifiedTopology: true
     });
 
+/* Handle mongoDB connection */
 mongoose.connection.once('open', ()=> console.log('Connected')).on('error', (error) => {
     console.log("Error", error);
 });
@@ -42,7 +43,7 @@ app.use((req, res, next) => {
 
 /* Add your different api middlewares here */
 
-/* None of the router got used */
+/* None of the middleware got used it will redirect to 404 page :) */
 app.use((req, res, next) => {
     const error = new Error('Not found');
     error.status = 404;
