@@ -8,3 +8,7 @@
 #ENV files
 .env
 ormconfig.yml
+
+# compiled output
+/dist
+/node_modules
