@@ -1,9 +1,9 @@
-const mongoose =  require('mongoose')
+// import mongoose from "mongoose";
 
-const resumeSchema = mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
-    resumeItem : { type: String, required: true },
-    resumeItem2 : {type: String, required: true}
-})
+// const resumeSchema = mongoose.Schema({
+//     _id: mongoose.Schema.Types.ObjectId,
+//     resumeItem : { type: String, required: true },
+//     resumeItem2 : {type: String, required: true }
+// })
 
-module.exports = mongoose.model('Resume', resumeSchema);
+// module.exports = mongoose.model('Resume', resumeSchema);
