@@ -5,6 +5,9 @@ const bodyParser = require('body-parser')  //handling response
 const mongoose = require('mongoose') // connect to db
 const dotenv = require('dotenv') // Fixing env issue
 
+const homeRoute = require('./api/routes/homie')
+const skillRoute = require('./api/routes/skills')
+
 /* Configure dotnev to read the env file */
 dotenv.config()
 
@@ -42,6 +45,7 @@ app.use((req, res, next) => {
 });
 
 /* Add your different api middlewares here */
+app.use('/home', homeRoute);
 
 /* None of the middleware got used it will redirect to 404 page :) */
 app.use((req, res, next) => {
