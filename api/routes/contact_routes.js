@@ -3,19 +3,17 @@ const express = require('express')
 const contactModel = require('../models/contact')
 const app = require('../../app')
 
-
-
 const router = express.Router();
 
 /* Get Request
-- From project model find heading, desc
+- From contact model find heading, desc
 - exec query
 - then display it in response as doc
 - catch the error
 */
 
-router.get('/',  async ( req, res, next ) => {  
-    try 
+router.get('/',  async ( req, res, next ) => {
+    try
     {
         const contactResponse = await contactModel.find({}).select("linkedIn github email instagram twitter prof_image").exec();
         console.log('contactResponse: ', contactResponse);
@@ -53,7 +51,7 @@ router.post('/', async( req, res, next ) => {
         });
 
         const response = await contact.save();
-        return res.status(201).json({
+        return res.status(200).json({
             message: "Handling user create request",
             projectCreated: response
         });
@@ -74,9 +72,9 @@ router.post('/', async( req, res, next ) => {
 - Updates contact based on _id provided in the api request
 */
 
-router.patch('/:id', async (req, res, next) => {
+router.patch('/:contactId', async (req, res, next) => {
     try {
-        const id = req.params.id;
+        const id = req.params.contactId;
         const updateOps = {}
         for (const ops of req.body) {
             updateOps[ops.propName] = ops.value;
@@ -91,6 +89,29 @@ router.patch('/:id', async (req, res, next) => {
             error: err
         });
     }
+});
+
+/*
+Delete
+- pass the id
+- remove will be executed
+- result will be returned
+- else handling the error using catch
+*/
+
+router.delete('/:contactId', async(req, res, next) => {
+    try {
+        console.log('req.body: ', req.body);
+        const id = req.params.contactId;
+        const result = await contactModel.remove({_id: id}).exec();
+        return res.status(200).json(result)
+    } catch (error) {
+        console.log(err);
+        return res.status(500).json({
+            error: err
+        });
+    }
+
 });
 
 module.exports = router;
