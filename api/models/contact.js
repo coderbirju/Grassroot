@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose')
 
 const contactSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
@@ -7,8 +7,6 @@ const contactSchema = mongoose.Schema({
     email : {type: String },
     instagram : {type: String},
     twitter : {type: String},
-    hack : {type: String},
-    gfg: {type: String},
     prof_image: {type: String}
 })
 

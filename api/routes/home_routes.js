@@ -3,7 +3,7 @@ const express = require('express')
 const homeModel = require('../models/home')
 const app = require('../../app')
 const { route } = require('../../app')
-const { update } = require('../models/home')
+const { update, updateOne } = require('../models/home')
 
 const router = express.Router()
 
@@ -14,23 +14,24 @@ const router = express.Router()
 - catch the error
 */
 
-router.get('/', ( req, res, next ) => {
-    homeModel.find()
-    .select('heading desc')
-    .exec()
-    .then(docs => {
-        res.status(200).json({
-            count: docs.length,
-            home: docs
+
+router.get('/',  async ( req, res, next ) => {
+    try 
+    {
+        const homeResponse = await homeModel.find({}).select('heading desc').exec();
+        console.log('homeResponse: ', homeResponse);
+        return res.status(200).json({
+           count:  homeResponse.length,
+           projects: homeResponse
         });
-    }).catch(err => {
-        console.log.err();
-        res.status(500).json({
+    }
+    catch (err){
+        console.log(err);
+        return res.status(500).json({
             error: err
         });
-    });
+    }
 });
-
 /* Post request
 - create home model
 - save the result
