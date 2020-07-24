@@ -11,8 +11,8 @@ const router = express.Router();
 - catch the error
 */
 
-router.get('/',  async ( req, res, next ) => {  
-    try 
+router.get('/',  async ( req, res, next ) => {
+    try
     {
         const projectResponse = await projectModel.find({}).select("name desc link").exec();
         console.log('projectResponse: ', projectResponse);
@@ -47,7 +47,7 @@ router.post('/', async( req, res, next ) => {
         });
 
         const response = await project.save();
-        return res.status(201).json({
+        return res.status(200).json({
             message: "Handling user create request",
             projectCreated: response
         });
@@ -67,9 +67,9 @@ router.post('/', async( req, res, next ) => {
 - Updates project based on _id provided in the api request
 */
 
-router.patch('/:id', async (req, res, next) => {
+router.patch('/:projectId', async (req, res, next) => {
     try {
-        const id = req.params.id;
+        const id = req.params.projectId;
         const updateOps = {}
         for (const ops of req.body) {
             updateOps[ops.propName] = ops.value;
@@ -84,6 +84,30 @@ router.patch('/:id', async (req, res, next) => {
             error: err
         });
     }
+});
+
+
+/*
+Delete
+- pass the id
+- remove will be executed
+- result will be returned
+- else handling the error using catch
+*/
+
+router.delete('/:projectId', async(req, res, next) => {
+    try {
+        console.log('req.body: ', req.body);
+        const id = req.params.projectId;
+        const result = await projectModel.remove({_id: id}).exec();
+        return res.status(200).json(result)
+    } catch (error) {
+        console.log(err);
+        return res.status(500).json({
+            error: err
+        });
+    }
+
 });
 
 module.exports = router;
