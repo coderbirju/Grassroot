@@ -18,7 +18,7 @@ router.get('/', async (req, res, next) => {
   try {
     const skillResponse = await skillModel
       .find({})
-      .select('language skill_name desc stars')
+      .select('logo skill_name desc link')
       .exec();
     console.log('skillResponse: ', skillResponse);
     return res.status(200).json({
@@ -45,10 +45,10 @@ router.post('/', async (req, res, next) => {
     console.log('req.body: ', req.body);
     const skill = skillModel({
       _id: new mongoose.Types.ObjectId(),
-      language: req.body.language,
+      link: req.body.link,
       skill_name: req.body.skill_name,
       desc: req.body.desc,
-      stars: req.body.skill,
+      logo: req.body.logo,
     });
     const skillResponse = await skill.save();
     return res.status(200).json({
