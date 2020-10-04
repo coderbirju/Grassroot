@@ -49,6 +49,7 @@ router.post('/', async (req, res, next) => {
       skill_name: req.body.skill_name,
       desc: req.body.desc,
       logo: req.body.logo,
+      card_style: req.body.card_style,
     });
     const skillResponse = await skill.save();
     return res.status(200).json({
