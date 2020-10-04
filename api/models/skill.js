@@ -6,6 +6,7 @@ const skillSchema = mongoose.Schema({
   skill_name: { type: String, required: true },
   desc: { type: String, required: true },
   logo: { type: String, required: true },
+  card_style: { type: String, required: true },
 });
 
 module.exports = mongoose.model('Skills', skillSchema);

@@ -18,7 +18,7 @@ router.get('/', async (req, res, next) => {
   try {
     const skillResponse = await skillModel
       .find({})
-      .select('logo skill_name desc link')
+      .select('logo skill_name desc link card_style')
       .exec();
     console.log('skillResponse: ', skillResponse);
     return res.status(200).json({
@@ -49,6 +49,7 @@ router.post('/', async (req, res, next) => {
       skill_name: req.body.skill_name,
       desc: req.body.desc,
       logo: req.body.logo,
+      card_style: req.body.card_style,
     });
     const skillResponse = await skill.save();
     return res.status(200).json({
