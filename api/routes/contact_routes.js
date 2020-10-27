@@ -5,7 +5,7 @@ const app = require('../../app');
 
 const router = express.Router();
 
-/* Get Request
+/*Get Request
 - From contact model find heading, desc
 - exec query
 - then display it in response as doc
