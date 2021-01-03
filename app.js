@@ -9,6 +9,7 @@ const homeRoute = require('./api/routes/home_routes')
 const skillRoute = require('./api/routes/skill_routes')
 const projectRoute = require('./api/routes/project_routes')
 const contactRoute = require('./api/routes/contact_routes')
+const resumeRoute = require('./api/routes/resume_routes')
 
 /* Configure dotnev to read the env file */
 dotenv.config()
@@ -51,6 +52,7 @@ app.use('/home', homeRoute);
 app.use('/project', projectRoute);
 app.use('/skill', skillRoute);
 app.use('/contact', contactRoute);
+app.use('/resume', resumeRoute);
 
 /* None of the middleware got used it will redirect to 404 page :) */
 app.use((req, res, next) => {

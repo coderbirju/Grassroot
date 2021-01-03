@@ -1,9 +1,12 @@
-// import mongoose from "mongoose";
+const mongoose = require('mongoose');
 
-// const resumeSchema = mongoose.Schema({
-//     _id: mongoose.Schema.Types.ObjectId,
-//     resumeItem : { type: String, required: true },
-//     resumeItem2 : {type: String, required: true }
-// })
+const resumeSchema = mongoose.Schema({
+    _id: mongoose.Schema.Types.ObjectId,
+    dateRange : { type: String, required: true },
+    company : {type: String, required: true },
+    role : {type: String, required: true },
+    desc : {type: String, required: true },
+    achievements : {type: Array }
+})
 
-// module.exports = mongoose.model('Resume', resumeSchema);
+module.exports = mongoose.model('Resume', resumeSchema);
